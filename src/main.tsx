@@ -3,10 +3,13 @@ import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { registerSW } from 'virtual:pwa-register'
+import worker from './mocks/worker'
 import './index.css'
 
-registerSW()
+await worker.start()
 
+registerSW()
+// Rest of your application code
 const MAX_RETRIES = 1
 const queryClient = new QueryClient({
 	defaultOptions: {
